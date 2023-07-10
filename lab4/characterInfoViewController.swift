@@ -21,7 +21,7 @@ final class characterInfoViewController: UIViewController{
     
     var delegate : characterInfoViewControllerDelegate?
     
-    var data : CharacterModel?{
+    var data : Model?{
         didSet{
             guard let data else {return }
             setUpData(character: data)
@@ -43,7 +43,7 @@ final class characterInfoViewController: UIViewController{
         alert.addTextField { (textField) in textField.placeholder = "Spicies"}
         let doneAction = UIAlertAction(title: "Done", style: .default, handler: {_ in if let newSpicies = alert.textFields?.first?.text{self.spiciesLabel.text = newSpicies
             guard let myData =  self.data else {return}
-            self.delegate?.changeSpicices(with: myData.id, and: newSpicies)
+            self.delegate?.changeSpicices(with: Int(myData.id), and: newSpicies)
         }
 
         })
@@ -59,7 +59,7 @@ final class characterInfoViewController: UIViewController{
         alert.addTextField { (textField) in textField.placeholder = "Location"}
         let doneAction = UIAlertAction(title: "Done", style: .default, handler: {_ in if let newLocation = alert.textFields?.first?.text{self.locationLabel.text = newLocation
             guard let myData = self.data else {return}
-            self.delegate?.changeLocation(with: myData.id, and: newLocation)
+            self.delegate?.changeLocation(with: Int(myData.id), and: newLocation)
         }})
         alert.addAction(doneAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -67,7 +67,7 @@ final class characterInfoViewController: UIViewController{
         present(alert, animated: true, completion: nil)
     }
     
-    private func setUpData (character : CharacterModel){
+    private func setUpData (character : Model){
         idLabel.text = String(character.id)
         idLabel.textColor = .white
         
@@ -77,7 +77,7 @@ final class characterInfoViewController: UIViewController{
         spiciesLabel.text = character.species
         spiciesLabel.textColor = .white
         
-        locationLabel.text = character.location.name
+        locationLabel.text = character.location
         locationLabel.textColor = .white
         
         genderLabel.text = character.gender

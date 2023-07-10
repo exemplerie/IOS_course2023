@@ -20,6 +20,10 @@
 		6DD113722A541B190030F690 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113712A541B190030F690 /* NetworkManager.swift */; };
 		6DD113752A55F6C00030F690 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113742A55F6C00030F690 /* CharacterModel.swift */; };
 		6DD113772A560D0A0030F690 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113762A560D0A0030F690 /* ImageExtensions.swift */; };
+		6DD113A02A597DDB0030F690 /* CharacterDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DD1139E2A597DDB0030F690 /* CharacterDataModel.xcdatamodeld */; };
+		6DD113A32A597FAA0030F690 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113A12A597FAA0030F690 /* Character+CoreDataClass.swift */; };
+		6DD113A42A597FAA0030F690 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113A22A597FAA0030F690 /* Character+CoreDataProperties.swift */; };
+		6DD113A62A5981D20030F690 /* PersistantContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113A52A5981D20030F690 /* PersistantContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		6DD113712A541B190030F690 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6DD113742A55F6C00030F690 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		6DD113762A560D0A0030F690 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
+		6DD1139F2A597DDB0030F690 /* CharacterDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CharacterDataModel.xcdatamodel; sourceTree = "<group>"; };
+		6DD113A12A597FAA0030F690 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6DD113A22A597FAA0030F690 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6DD113A52A5981D20030F690 /* PersistantContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistantContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,8 @@
 		6DA323832A49FD0600F9D088 = {
 			isa = PBXGroup;
 			children = (
+				6DD113A12A597FAA0030F690 /* Character+CoreDataClass.swift */,
+				6DD113A22A597FAA0030F690 /* Character+CoreDataProperties.swift */,
 				6DA3238E2A49FD0600F9D088 /* lab4 */,
 				6DA3238D2A49FD0600F9D088 /* Products */,
 			);
@@ -82,6 +92,8 @@
 				6DD1133E2A4C6D730030F690 /* Character.swift */,
 				6DD113402A4ECD8F0030F690 /* characterInfoViewController.swift */,
 				6DD113762A560D0A0030F690 /* ImageExtensions.swift */,
+				6DD1139E2A597DDB0030F690 /* CharacterDataModel.xcdatamodeld */,
+				6DD113A52A5981D20030F690 /* PersistantContainer.swift */,
 			);
 			path = lab4;
 			sourceTree = "<group>";
@@ -182,11 +194,15 @@
 			files = (
 				6DA323942A49FD0600F9D088 /* ViewController.swift in Sources */,
 				6DA323902A49FD0600F9D088 /* AppDelegate.swift in Sources */,
+				6DD113A32A597FAA0030F690 /* Character+CoreDataClass.swift in Sources */,
+				6DD113A62A5981D20030F690 /* PersistantContainer.swift in Sources */,
 				6DA323922A49FD0600F9D088 /* SceneDelegate.swift in Sources */,
 				6DD113722A541B190030F690 /* NetworkManager.swift in Sources */,
+				6DD113A42A597FAA0030F690 /* Character+CoreDataProperties.swift in Sources */,
 				6DD1133F2A4C6D730030F690 /* Character.swift in Sources */,
 				6DD113752A55F6C00030F690 /* CharacterModel.swift in Sources */,
 				6DD113772A560D0A0030F690 /* ImageExtensions.swift in Sources */,
+				6DD113A02A597DDB0030F690 /* CharacterDataModel.xcdatamodeld in Sources */,
 				6DD113412A4ECD8F0030F690 /* characterInfoViewController.swift in Sources */,
 				6DD1136D2A54137D0030F690 /* APItarget.swift in Sources */,
 			);
@@ -423,6 +439,19 @@
 			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		6DD1139E2A597DDB0030F690 /* CharacterDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6DD1139F2A597DDB0030F690 /* CharacterDataModel.xcdatamodel */,
+			);
+			currentVersion = 6DD1139F2A597DDB0030F690 /* CharacterDataModel.xcdatamodel */;
+			path = CharacterDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6DA323842A49FD0600F9D088 /* Project object */;
 }

@@ -55,17 +55,17 @@ class Character: UITableViewCell {
         
     }
     
-    func setUpData (character : CharacterModel){
+    func setUpData (character : Model){
         IDLabel.text = String(character.id)
         IDLabel.textColor = .white
-        
+       
         nameLabel.text = "~" + character.name + "~"
         nameLabel.textColor = .white
         
         speciesLabel.text = character.species
         speciesLabel.textColor = .white
         
-        locationLabel.text = character.location.name
+        locationLabel.text = character.location
         locationLabel.textColor = .white
         
         genderLabel.text = String (describing: character.gender)
