@@ -27,12 +27,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return frc
     }()
     
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var CharacterView: UITableView!
     
     private var characters : [CharacterModel] = []
     private let networkManager: NetworkManager = NetworkManager()
-    
+    var filteredCharacters = [Model]()
+    var isSearching = false
     var model: Model?
     
     func printNumberOfElementsInCoreData() {
@@ -105,6 +107,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     newModel.location = characterResponse.location.name
                     newModel.status = characterResponse.status
                     newModel.species = characterResponse.species
+                    newModel.isFavorite = false
                     PersistentContainer.shared.saveContext(backgroundContext: backgroundContext)
                     
                 }
@@ -118,6 +121,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchBar.delegate = self
         CharacterView.delegate = self
         CharacterView.dataSource = self
         CharacterView.backgroundColor = .clear
@@ -131,7 +135,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
 //        deleteAllData()
         
-        for currentID in 70 ... 80{
+        for currentID in 1 ... 69{
             loadCharacter(byId: currentID)
         }
 
@@ -145,12 +149,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         guard let characterInfoView = storyboard?.instantiateViewController(identifier: "characterInfoViewController") as? characterInfoViewController else {return }
         characterInfoView.delegate = self
         present(characterInfoView, animated: true)
-        characterInfoView.data = frc.object(at: indexPath)
+        
+        if isSearching {
+            characterInfoView.data = filteredCharacters[indexPath.row]
+        } else {
+            characterInfoView.data = frc.object(at: indexPath)
+        }
     }
     
     //MARK: - tableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching {
+            return filteredCharacters.count
+        }
         if let sections = frc.sections {
             return sections[section].numberOfObjects
         } else {
@@ -160,36 +172,104 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let characterCell = tableView.dequeueReusableCell(withIdentifier: "Character") as? Character else {return UITableViewCell()}
-        let character = frc.object(at: indexPath)
+        let character: Model
+        if isSearching {
+            character = filteredCharacters[indexPath.row]
+        }
+        else {
+            character = frc.object(at: indexPath)
+        }
         characterCell.setUpData(character: character)
+        characterCell.likeButtonAction = { [weak self] in
+                self?.handleLikeButtonTapped(for: character)
+            }
         return characterCell
     }
+    
+    private func handleLikeButtonTapped(for character: Model) {
+        character.isFavorite = !character.isFavorite
+
+        let buttonImage = character.isFavorite ? UIImage(named: "free-icon-heart-1550594-2") : UIImage(named: "free-icon-heart-shape-14815-2")
+
+        for cell in CharacterView.visibleCells {
+            if let characterCell = cell as? Character, characterCell.characterModel == character {
+                characterCell.likeButton.setImage(buttonImage, for: .normal)
+                break
+            }
+        }
+
+        do {
+            try PersistentContainer.shared.viewContext.save()
+        } catch {
+            print("Error saving changes: \(error)")
+        }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+            CharacterView.beginUpdates()
+            }
+            
+        func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+                CharacterView.endUpdates()
+            }
+            
+        func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+                switch type {
+                case .insert:
+                    if let newIndexPath = newIndexPath {
+                        CharacterView.insertRows(at: [newIndexPath], with: .automatic)
+                    }
+                    
+                case .update:
+                    if let indexPath = indexPath, let cell = CharacterView.cellForRow(at: indexPath) as? Character {
+                        let character = frc.object(at: indexPath)
+                        cell.setUpData(character: character)
+                    }
+                    
+                case .move:
+                    if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                        CharacterView.moveRow(at: indexPath, to: newIndexPath)
+                    }
+                    
+                case .delete:
+                    if let indexPath = indexPath {
+                        CharacterView.deleteRows(at: [indexPath], with: .automatic)
+                    }
+                    
+                @unknown default:
+                    break
+                }
+            }
+
+
+
 
 
 }
 
 extension ViewController: characterInfoViewControllerDelegate {
-    
+
     func changeLocation(with id: Int, and newLocation: String) {
         let fetchRequest: NSFetchRequest<Model> = Model.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
-        
+
         do {
             let results = try PersistentContainer.shared.viewContext.fetch(fetchRequest)
             if let model = results.first {
                 model.location = newLocation
                 try PersistentContainer.shared.viewContext.save()
                 CharacterView.reloadData()
+
             }
         } catch {
             print("Error updating location: \(error)")
         }
     }
-    
+
     func changeSpicices(with id: Int, and newSpecies: String) {
         let fetchRequest: NSFetchRequest<Model> = Model.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
-        
+
         do {
             let results = try PersistentContainer.shared.viewContext.fetch(fetchRequest)
             if let model = results.first {
@@ -204,3 +284,32 @@ extension ViewController: characterInfoViewControllerDelegate {
 }
 
 
+
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filteredCharacters.removeAll()
+        guard searchText != "" || searchText != " " else {
+            print("empty search")
+            return
+        }
+        
+        for item in frc.fetchedObjects! {
+            let text = searchText.lowercased()
+            let isArrayContain = item.name.lowercased().range(of: text)
+            
+            if isArrayContain != nil {
+                print("search complete")
+                filteredCharacters.append(item)
+            }
+        }
+        
+        if searchBar.text == "" {
+            isSearching = false
+            CharacterView.reloadData()
+        } else {
+            isSearching = true
+            CharacterView.reloadData()
+        }
+    }
+}

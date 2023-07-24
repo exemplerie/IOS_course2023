@@ -24,6 +24,7 @@
 		6DD113A32A597FAA0030F690 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113A12A597FAA0030F690 /* Character+CoreDataClass.swift */; };
 		6DD113A42A597FAA0030F690 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113A22A597FAA0030F690 /* Character+CoreDataProperties.swift */; };
 		6DD113A62A5981D20030F690 /* PersistantContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113A52A5981D20030F690 /* PersistantContainer.swift */; };
+		6DD113C82A5C4A840030F690 /* loveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD113C72A5C4A840030F690 /* loveController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		6DD113A12A597FAA0030F690 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6DD113A22A597FAA0030F690 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6DD113A52A5981D20030F690 /* PersistantContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistantContainer.swift; sourceTree = "<group>"; };
+		6DD113C72A5C4A840030F690 /* loveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loveController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				6DD113762A560D0A0030F690 /* ImageExtensions.swift */,
 				6DD1139E2A597DDB0030F690 /* CharacterDataModel.xcdatamodeld */,
 				6DD113A52A5981D20030F690 /* PersistantContainer.swift */,
+				6DD113C72A5C4A840030F690 /* loveController.swift */,
 			);
 			path = lab4;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				6DD113752A55F6C00030F690 /* CharacterModel.swift in Sources */,
 				6DD113772A560D0A0030F690 /* ImageExtensions.swift in Sources */,
 				6DD113A02A597DDB0030F690 /* CharacterDataModel.xcdatamodeld in Sources */,
+				6DD113C82A5C4A840030F690 /* loveController.swift in Sources */,
 				6DD113412A4ECD8F0030F690 /* characterInfoViewController.swift in Sources */,
 				6DD1136D2A54137D0030F690 /* APItarget.swift in Sources */,
 			);

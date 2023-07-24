@@ -23,7 +23,7 @@ extension Model {
     @NSManaged public var gender: String
     @NSManaged public var location: String
     @NSManaged public var image: String
-
+    @NSManaged public var isFavorite: Bool
 }
 
 extension Model : Identifiable {

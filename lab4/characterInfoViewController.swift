@@ -38,6 +38,7 @@ final class characterInfoViewController: UIViewController{
     @IBOutlet weak var genderLabel: UITextView!
     
     @IBAction func speciesButton(_ sender: Any) {
+        
 
         let alert = UIAlertController(title: "Enter New Value", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in textField.placeholder = "Spicies"}
@@ -47,6 +48,7 @@ final class characterInfoViewController: UIViewController{
         }
 
         })
+
         alert.addAction(doneAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
@@ -55,12 +57,14 @@ final class characterInfoViewController: UIViewController{
     }
     
     @IBAction func locationButtion(_ sender: Any) {
+        
         let alert = UIAlertController(title: "Enter New Value", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in textField.placeholder = "Location"}
         let doneAction = UIAlertAction(title: "Done", style: .default, handler: {_ in if let newLocation = alert.textFields?.first?.text{self.locationLabel.text = newLocation
             guard let myData = self.data else {return}
             self.delegate?.changeLocation(with: Int(myData.id), and: newLocation)
         }})
+
         alert.addAction(doneAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
@@ -85,6 +89,7 @@ final class characterInfoViewController: UIViewController{
         
         statusLabel.text = character.status
         statusLabel.textColor = .white
+        
         
         characterImage.download(from: character.image)
 //        characterImage.image = UIImage(named: character.image)
