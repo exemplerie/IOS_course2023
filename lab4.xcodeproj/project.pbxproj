@@ -61,6 +61,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1716FFDC2A6FACCB00CBDFC6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6DA323932A49FD0600F9D088 /* ViewController.swift */,
+				6DD113C72A5C4A840030F690 /* loveController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1716FFDD2A6FACDE00CBDFC6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6DD113402A4ECD8F0030F690 /* characterInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1716FFDE2A6FACE700CBDFC6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6DD113A52A5981D20030F690 /* PersistantContainer.swift */,
+				6DD1133E2A4C6D730030F690 /* Character.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1716FFDF2A6FAD1500CBDFC6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6DD113762A560D0A0030F690 /* ImageExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		6DA323832A49FD0600F9D088 = {
 			isa = PBXGroup;
 			children = (
@@ -82,21 +116,19 @@
 		6DA3238E2A49FD0600F9D088 /* lab4 */ = {
 			isa = PBXGroup;
 			children = (
+				1716FFDE2A6FACE700CBDFC6 /* Model */,
+				1716FFDD2A6FACDE00CBDFC6 /* View */,
+				1716FFDC2A6FACCB00CBDFC6 /* Controller */,
 				6DD113732A55F69C0030F690 /* ResponseModels */,
 				6DD1136B2A54135A0030F690 /* Services */,
 				6DA3238F2A49FD0600F9D088 /* AppDelegate.swift */,
 				6DA323912A49FD0600F9D088 /* SceneDelegate.swift */,
-				6DA323932A49FD0600F9D088 /* ViewController.swift */,
 				6DA323952A49FD0600F9D088 /* Main.storyboard */,
 				6DA323982A49FD0700F9D088 /* Assets.xcassets */,
 				6DA3239A2A49FD0700F9D088 /* LaunchScreen.storyboard */,
 				6DA3239D2A49FD0700F9D088 /* Info.plist */,
-				6DD1133E2A4C6D730030F690 /* Character.swift */,
-				6DD113402A4ECD8F0030F690 /* characterInfoViewController.swift */,
-				6DD113762A560D0A0030F690 /* ImageExtensions.swift */,
+				1716FFDF2A6FAD1500CBDFC6 /* Extensions */,
 				6DD1139E2A597DDB0030F690 /* CharacterDataModel.xcdatamodeld */,
-				6DD113A52A5981D20030F690 /* PersistantContainer.swift */,
-				6DD113C72A5C4A840030F690 /* loveController.swift */,
 			);
 			path = lab4;
 			sourceTree = "<group>";
